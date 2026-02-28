@@ -1,61 +1,61 @@
 % ============================================================================
 % Municipality-Scale Flood Risk Mapping in Antioquia, Colombia
-% Target journal: Remote Sensing / Natural Hazards and Earth System Sciences
+% Using Sentinel-1 SAR and Ensemble Machine Learning (2015--2025)
 % Authors: Cristian Espinal Maya, Santiago Jimenez Londono
+% Format: arXiv preprint
 % ============================================================================
 
-\documentclass[notspecified,article,submit,pdftex,moreauthors]{Definitions/mdpi}
+\documentclass{article}
 
-%=================================================================
-% MDPI internal commands
-\firstpage{1}
-\makeatletter
-\setcounter{page}{\@firstpage}
-\makeatother
-\pubvolume{1}
-\issuenum{1}
-\articlenumber{0}
-\pubyear{2026}
-\copyrightyear{2026}
+\usepackage{arxiv}
 
-%=================================================================
-% Additional packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{multirow}
 \usepackage{siunitx}
 \sisetup{
     group-separator = {,},
     group-minimum-digits = 4,
 }
-\usepackage{longtable}
+\usepackage{natbib}
 \usepackage{tabularx}
-\usepackage{changepage}
 \usepackage{textcomp}
 
-%=================================================================
-% Title — concise, journal-ready
-\Title{Municipality-Scale Flood Risk Mapping in Antioquia, Colombia, Using Sentinel-1 SAR and Ensemble Machine Learning (2015--2025)}
+\graphicspath{{./figures/}}
 
-% ORCID
-\newcommand{\orcidauthorA}{}
+\title{Municipality-Scale Flood Risk Mapping in Antioquia, Colombia, Using Sentinel-1 SAR and Ensemble Machine Learning (2015--2025)}
 
-% Authors
-\Author{Cristian Espinal Maya $^{1,}$*\orcidA{} and Santiago Jim\'enez Londo\~no $^{1}$}
+\author{
+  Cristian Espinal Maya\thanks{Correspondence: cespinalm@eafit.edu.co. ORCID: \href{https://orcid.org/0009-0000-1009-8388}{0009-0000-1009-8388}} \\
+  School of Applied Sciences and Engineering\\
+  Universidad EAFIT\\
+  Medell\'in, Colombia \\
+  \texttt{cespinalm@eafit.edu.co} \\
+  \And
+  Santiago Jim\'enez Londo\~no\thanks{ORCID: \href{https://orcid.org/0009-0007-9862-7133}{0009-0007-9862-7133}} \\
+  School of Applied Sciences and Engineering\\
+  Universidad EAFIT\\
+  Medell\'in, Colombia \\
+  \texttt{sjimenez@eafit.edu.co} \\
+}
 
-\AuthorNames{Cristian Espinal Maya and Santiago Jim\'enez Londo\~no}
-
-\address{%
-$^{1}$ \quad School of Applied Sciences and Engineering, Universidad EAFIT, Medell\'in, Colombia; sjimenez@eafit.edu.co}
-
-\corres{Correspondence: cespinalm@eafit.edu.co (C.E.M.)}
-
-%=================================================================
-% Abstract — tight, 4-5 sentences per block, all numbers filled
-\abstract{A persistent scale mismatch limits the utility of satellite-based flood products for local governance: most operate at national resolution, while flood risk decisions in decentralized countries are made at the municipal level. We present a reproducible, open-access framework that delivers municipality-level flood risk statistics for all 125 municipalities of the Department of Antioquia, Colombia (\SI{63612}{\kilo\metre\squared}; 6.8 million inhabitants). We processed 4,762 Sentinel-1 C-band SAR scenes (2015--2025) within Google Earth Engine using adaptive Otsu thresholding to produce 132 monthly water extent maps at \SI{10}{\metre} resolution. Eighteen predictor variables spanning topographic, hydrological, climatic, land cover, and demographic domains were integrated into a weighted ensemble of Random Forest, XGBoost, and LightGBM, achieving AUC-ROC $= 0.94 \pm 0.02$ under spatial five-fold cross-validation. HAND, SAR flood frequency, and elevation were identified as dominant predictors via SHAP analysis. Overlaying the susceptibility surface with \SI{100}{\metre} population data reveals that 1.47 million people (21.5\% of the department) reside in high or very high susceptibility zones, concentrated along the Bajo Cauca alluvial plains, the Magdalena Medio floodplain, and the Urab\'a coastal lowlands. La Ni\~na years amplify mean flood extent by 34\% relative to El Ni\~no years ($p < 0.001$). The framework relies entirely on open-access data and cloud computing, enabling direct replication across other tropical departments.}
-
-% Keywords
-\keyword{flood susceptibility mapping; Sentinel-1 SAR; ensemble machine learning; HAND; Google Earth Engine; SHAP; ENSO; population exposure; Antioquia Colombia}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+\maketitle
+
+\begin{abstract}
+A persistent scale mismatch limits the utility of satellite-based flood products for local governance: most operate at national resolution, while flood risk decisions in decentralized countries are made at the municipal level. We present a reproducible, open-access framework that delivers municipality-level flood risk statistics for all 125 municipalities of the Department of Antioquia, Colombia (\SI{63612}{\kilo\metre\squared}; 6.8 million inhabitants). We processed 4,762 Sentinel-1 C-band SAR scenes (2015--2025) within Google Earth Engine using adaptive Otsu thresholding to produce 132 monthly water extent maps at \SI{10}{\metre} resolution. Eighteen predictor variables spanning topographic, hydrological, climatic, land cover, and demographic domains were integrated into a weighted ensemble of Random Forest, XGBoost, and LightGBM, achieving AUC-ROC $= 0.94 \pm 0.02$ under spatial five-fold cross-validation. HAND, SAR flood frequency, and elevation were identified as dominant predictors via SHAP analysis. Overlaying the susceptibility surface with \SI{100}{\metre} population data reveals that 1.47 million people (21.5\% of the department) reside in high or very high susceptibility zones, concentrated along the Bajo Cauca alluvial plains, the Magdalena Medio floodplain, and the Urab\'a coastal lowlands. La Ni\~na years amplify mean flood extent by 34\% relative to El Ni\~no years ($p < 0.001$). The framework relies entirely on open-access data and cloud computing, enabling direct replication across other tropical departments.
+\end{abstract}
+
+\keywords{flood susceptibility mapping \and Sentinel-1 SAR \and ensemble machine learning \and HAND \and Google Earth Engine \and SHAP \and ENSO \and population exposure \and Antioquia Colombia}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
@@ -72,10 +72,11 @@ Three technological developments now converge to address this gap. First, Sentin
 \subsection{Study Area}
 \label{sec:study_area}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig01_study_area.pdf}
-\caption{Department of Antioquia, Colombia, showing nine subregions and 125 municipalities.\label{fig:study_area}}
+\includegraphics[width=\textwidth]{fig01_study_area.pdf}
+\caption{Department of Antioquia, Colombia, showing nine subregions and 125 municipalities.}
+\label{fig:study_area}
 \end{figure}
 
 The Department of Antioquia (\SI{63612}{\kilo\metre\squared}; 5\textdegree{}25'--8\textdegree{}53'\,N, 73\textdegree{}53'--77\textdegree{}07'\,W) comprises 125 municipalities in nine subregions (Figure~\ref{fig:study_area}), with 6.8 million inhabitants. The landscape is structured by the Central and Western Cordilleras, creating an elevational gradient from sea level to $>$\SI{4000}{\metre}. Five major river systems drain the department: the Cauca (with \SI{8000}{\kilo\metre\squared} of alluvial wetlands in Bajo Cauca), the Magdalena, the Atrato ($\sim$\SI{4500}{\cubic\metre\per\second} mean discharge), the Nech\'i, and the Porce--Nus system draining the Valle de Aburr\'a metropolitan area (3.9 million inhabitants). Precipitation is bimodal (peaks in MAM and SON), ranging from 1,200 to $>$4,000~mm\,yr$^{-1}$, and strongly modulated by ENSO: La Ni\~na episodes increase precipitation by 20--40\% \citep{Poveda2001, Mesa2006}. With over 2,800 flood-related disasters recorded since 1970, Antioquia is one of Latin America's most flood-affected regions \citep{FloodRiskLAC2022}.
@@ -88,8 +89,9 @@ The Department of Antioquia (\SI{63612}{\kilo\metre\squared}; 5\textdegree{}25'-
 
 The framework integrates 10 satellite and ancillary datasets (Table~\ref{tab:data_sources}), all accessed via Google Earth Engine \citep{Gorelick2017} except administrative boundaries (GADM 4.1).
 
-\begin{table}[H]
-\caption{Datasets used in the flood risk assessment framework.\label{tab:data_sources}}
+\begin{table}[htbp]
+\caption{Datasets used in the flood risk assessment framework.}
+\label{tab:data_sources}
 \centering
 \footnotesize
 \begin{tabular}{lllll}
@@ -115,10 +117,11 @@ A total of 4,762 Sentinel-1 C-band SAR GRD scenes were ingested (IW mode, VV+VH 
 \subsection{SAR-Based Water Detection}
 \label{sec:sar_water}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{figures/fig02_sar_water_detection.pdf}
-\caption{Sentinel-1 SAR flood detection in Bajo Cauca, Antioquia. (\textbf{a})~Pre-flood VV backscatter (Jul--Aug 2024). (\textbf{b})~During-flood VV (Oct--Nov 2024). (\textbf{c})~Detected flood water from backscatter differencing.\label{fig:methodology}}
+\includegraphics[width=0.95\textwidth]{fig02_sar_water_detection.pdf}
+\caption{Sentinel-1 SAR flood detection in Bajo Cauca, Antioquia. (\textbf{a})~Pre-flood VV backscatter (Jul--Aug 2024). (\textbf{b})~During-flood VV (Oct--Nov 2024). (\textbf{c})~Detected flood water from backscatter differencing.}
+\label{fig:methodology}
 \end{figure}
 
 The SAR workflow (Figure~\ref{fig:methodology}) transforms Sentinel-1 backscatter into monthly binary water maps through: (1) speckle reduction via focal median filter (\SI{50}{\metre} kernel) with slope masking ($> 30^{\circ}$); (2) adaptive Otsu thresholding \citep{Otsu1979} on the VV histogram; (3) water mask refinement with \SI{1}{\hectare} minimum mapping unit and permanent water flagging (JRC occurrence $\geq 75\%$); and (4) monthly maximum-extent compositing.
@@ -136,8 +139,9 @@ and classified into five categories (Equation~\ref{eq:flood_freq}): permanent ($
 
 Eighteen predictor variables (Table~\ref{tab:features}) were assembled across five thematic groups.
 
-\begin{table}[H]
-\caption{Predictor variables organized by thematic group.\label{tab:features}}
+\begin{table}[htbp]
+\caption{Predictor variables organized by thematic group.}
+\label{tab:features}
 \centering
 \footnotesize
 \begin{tabular}{lll}
@@ -196,18 +200,20 @@ Monthly water extent was stratified by ENSO phase using the Oceanic Ni\~no Index
 
 \subsection{SAR Water Detection and Flood Frequency}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig03_jrc_water_occurrence.pdf}
-\caption{JRC Global Surface Water occurrence for Antioquia, used for SAR validation and as an input feature.\label{fig:jrc_occurrence}}
+\includegraphics[width=\textwidth]{fig03_jrc_water_occurrence.pdf}
+\caption{JRC Global Surface Water occurrence for Antioquia, used for SAR validation and as an input feature.}
+\label{fig:jrc_occurrence}
 \end{figure}
 
 Processing 4,762 Sentinel-1 scenes yielded 132 monthly composites and 11 annual maximum extent maps. Adaptive Otsu thresholds varied from \SI{-17.2}{\deci\bel} (October 2020, La Ni\~na) to \SI{-13.8}{\deci\bel} (January 2019, El Ni\~no)---a \SI{3.4}{\deci\bel} seasonal swing confirming the necessity of adaptive thresholding.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.9\textwidth]{figures/fig05_hand_susceptibility.pdf}
-\caption{HAND (Height Above Nearest Drainage) map for Antioquia derived from MERIT Hydro. Low HAND values (red) indicate proximity to the fluvial network and high flood susceptibility.\label{fig:hand_map}}
+\includegraphics[width=0.9\textwidth]{fig05_hand_susceptibility.pdf}
+\caption{HAND (Height Above Nearest Drainage) map for Antioquia derived from MERIT Hydro. Low HAND values (red) indicate proximity to the fluvial network and high flood susceptibility.}
+\label{fig:hand_map}
 \end{figure}
 
 The decadal flood frequency analysis reveals three regimes, spatially consistent with JRC long-term water occurrence (Figure~\ref{fig:jrc_occurrence}) and HAND values (Figure~\ref{fig:hand_map}): lowland alluvial flooding ($FF > 25\%$) along the Cauca, Magdalena, and Nech\'i corridors; piedmont flooding ($FF$ 10--25\%) in cordillera-lowland transitions; and coastal flooding ($FF$ 10--50\%) across Urab\'a. Of the department's total area, 2.1\% (1,336~km$^2$) shows permanent or very frequent flooding, 4.8\% occasional flooding, and 8.3\% rare flooding, while 84.8\% was never detected as flooded.
@@ -216,8 +222,9 @@ Validation against JRC occurrence yielded Pearson $r = 0.82$ ($p < 0.001$, $n = 
 
 \subsection{Machine Learning Model Performance}
 
-\begin{table}[H]
-\caption{Flood susceptibility model performance under spatial five-fold cross-validation (mean $\pm$ SD). Best individual values in italics; best overall in bold.\label{tab:ml_results}}
+\begin{table}[htbp]
+\caption{Flood susceptibility model performance under spatial five-fold cross-validation (mean $\pm$ SD). Best individual values in italics; best overall in bold.}
+\label{tab:ml_results}
 \centering
 \footnotesize
 \begin{tabular}{lccccccc}
@@ -234,8 +241,9 @@ LightGBM        & 0.92 $\pm$ 0.02 & 0.85 $\pm$ 0.03 & 0.86 $\pm$ 0.03 & \textit{
 
 The weighted ensemble achieved AUC-ROC $= 0.94 \pm 0.02$ (Table~\ref{tab:ml_results}; Figure~\ref{fig:roc}), outperforming all individual models. The inter-fold AUC-ROC ranged from 0.91 (Fold~5: Urab\'a, where flat coastal terrain reduces predictor contrast) to 0.96 (Fold~4: Bajo Cauca + Magdalena Medio, where strong HAND gradients maximize discrimination). The Brier score was 0.11 (Table~\ref{tab:ml_results}), indicating well-calibrated probability estimates. On the held-out test set ($n = 6{,}150$), the ensemble confusion matrix yielded TP $= 2{,}644$, FP $= 369$, FN $= 431$, TN $= 2{,}706$ (Table~\ref{tab:confusion}).
 
-\begin{table}[H]
-\caption{Confusion matrix for the ensemble model on the held-out test set ($n = 6{,}150$).\label{tab:confusion}}
+\begin{table}[htbp]
+\caption{Confusion matrix for the ensemble model on the held-out test set ($n = 6{,}150$).}
+\label{tab:confusion}
 \centering
 \footnotesize
 \begin{tabular}{lcc}
@@ -248,18 +256,20 @@ The weighted ensemble achieved AUC-ROC $= 0.94 \pm 0.02$ (Table~\ref{tab:ml_resu
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.55\textwidth]{figures/fig06_roc_curves.pdf}
-\caption{ROC curves for individual models and the weighted ensemble under spatial cross-validation.\label{fig:roc}}
+\includegraphics[width=0.55\textwidth]{fig06_roc_curves.pdf}
+\caption{ROC curves for individual models and the weighted ensemble under spatial cross-validation.}
+\label{fig:roc}
 \end{figure}
 
 \subsection{Feature Importance}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.65\textwidth]{figures/fig07_shap_importance.pdf}
-\caption{Global SHAP feature importance for the ensemble model (top 12 of 18 predictors shown). Top three predictors (red) collectively account for 62\% of the total SHAP budget; the six omitted features contribute $<$3\% combined.\label{fig:shap}}
+\includegraphics[width=0.65\textwidth]{fig07_shap_importance.pdf}
+\caption{Global SHAP feature importance for the ensemble model (top 12 of 18 predictors shown). Top three predictors (red) collectively account for 62\% of the total SHAP budget; the six omitted features contribute $<$3\% combined.}
+\label{fig:shap}
 \end{figure}
 
 SHAP analysis identifies a clear hierarchy (Figure~\ref{fig:shap}): HAND (mean $|$SHAP$| = 0.182$), SAR flood frequency (0.145), and elevation (0.098) collectively account for 62\% of the total SHAP budget. HAND exhibits sharp nonlinearity: susceptibility is high for HAND $< \SI{5}{\metre}$, moderate at 5--\SI{15}{\metre}, and negligible above \SI{30}{\metre}---consistent with \citet{Garousi2019}, who showed HAND $< \SI{10}{\metre}$ captures $>$90\% of observed inundation. Distance to drainage (0.076), TWI (0.058), and slope (0.052) provide complementary topographic information. Among climatic features, annual precipitation (0.045) and soil moisture (0.039) contribute moderate predictive power, while land cover and population density show high local SHAP values in urban areas despite lower global importance.
@@ -268,10 +278,11 @@ Because SAR flood frequency appears in both the labelling criterion and the pred
 
 \subsection{Flood Susceptibility Map}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.9\textwidth]{figures/fig08_flood_susceptibility.pdf}
-\caption{Ensemble flood susceptibility map for Antioquia. Dashed lines delineate the nine subregions.\label{fig:susceptibility}}
+\includegraphics[width=0.9\textwidth]{fig08_flood_susceptibility.pdf}
+\caption{Ensemble flood susceptibility map for Antioquia. Dashed lines delineate the nine subregions.}
+\label{fig:susceptibility}
 \end{figure}
 
 The susceptibility map (Figure~\ref{fig:susceptibility}) classifies 24.2\% of the department (\num{15394}~km$^2$) as high or very high susceptibility (Table~\ref{tab:suscept_area}). Three corridors concentrate the highest values:
@@ -282,8 +293,9 @@ The susceptibility map (Figure~\ref{fig:susceptibility}) classifies 24.2\% of th
     \item \textbf{Urab\'a coastal lowlands}: 41.2\% high/very high, driven by intense precipitation, poor drainage, and Atrato River influence.
 \end{enumerate}
 
-\begin{table}[H]
-\caption{Area distribution across susceptibility classes by subregion (\% of subregional area).\label{tab:suscept_area}}
+\begin{table}[htbp]
+\caption{Area distribution across susceptibility classes by subregion (\% of subregional area).}
+\label{tab:suscept_area}
 \centering
 \footnotesize
 \begin{tabular}{lrrrrr}
@@ -309,8 +321,9 @@ Urab\'a              & 18.5 & 17.2 & 23.1 & 24.6 & 16.6 \\
 
 An estimated 1.47 million people (21.5\% of the department's 6.8 million inhabitants) reside in high or very high susceptibility zones (Table~\ref{tab:exposure}). Figure~\ref{fig:municipal_ranking} ranks the 20 municipalities with the highest Flood Risk Index, while Figure~\ref{fig:pop_exposure} spatializes population exposure across all 125 municipalities.
 
-\begin{table}[H]
-\caption{Population exposure by subregion ($\tau = 0.6$). FRI = Flood Risk Index.\label{tab:exposure}}
+\begin{table}[htbp]
+\caption{Population exposure by subregion ($\tau = 0.6$). FRI = Flood Risk Index.}
+\label{tab:exposure}
 \centering
 \footnotesize
 \begin{tabular}{lrrrrr}
@@ -332,32 +345,36 @@ Urab\'a              & 11,664 & 41.2 & 780   & 421 & 0.38 \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/fig09_municipal_risk_ranking.pdf}
-\caption{Top 20 municipalities ranked by Flood Risk Index (FRI). Bar colour indicates subregion; error bars show sensitivity to the exposure threshold $\tau \in [0.5, 0.7]$.\label{fig:municipal_ranking}}
+\includegraphics[width=0.85\textwidth]{fig09_municipal_risk_ranking.pdf}
+\caption{Top 20 municipalities ranked by Flood Risk Index (FRI). Bar colour indicates subregion; error bars show sensitivity to the exposure threshold $\tau \in [0.5, 0.7]$.}
+\label{fig:municipal_ranking}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{figures/fig10_population_exposure.pdf}
-\caption{Municipal-level population exposure to high and very high flood susceptibility zones ($\tau = 0.6$). Circle size is proportional to exposed population; colour indicates the proportion of total municipal population exposed.\label{fig:pop_exposure}}
+\includegraphics[width=0.75\textwidth]{fig10_population_exposure.pdf}
+\caption{Municipal-level population exposure to high and very high flood susceptibility zones ($\tau = 0.6$). Circle size is proportional to exposed population; colour indicates the proportion of total municipal population exposed.}
+\label{fig:pop_exposure}
 \end{figure}
 
 The municipalities with the highest FRI are Caucasia (0.51), Nech\'i (0.48), and Turbo (0.46)---all combining $>$40\% high-susceptibility area, $>$50\% population exposure, and high flood frequency (Figure~\ref{fig:municipal_ranking}). Bajo Cauca and Urab\'a show the highest proportional exposure (68\% and 54\% of residents, respectively), while Valle de Aburr\'a has the largest absolute exposure (312,000 people) due to metropolitan density (Figure~\ref{fig:pop_exposure}). Sensitivity analysis confirmed that varying $\tau$ from 0.5 to 0.7 changed the total exposed population by $\pm$18\% but preserved the ranking of the top 20 municipalities (Spearman $\rho = 0.97$).
 
 \subsection{Seasonal and ENSO Dynamics}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig11_seasonal_dynamics.pdf}
-\caption{Temporal flood dynamics (2015--2025). (\textbf{a})~Monthly flood extent with ENSO phase shading (blue: La Ni\~na; pink: El Ni\~no). (\textbf{b})~Climatological monthly mean; orange bars indicate peak wet-season months.\label{fig:seasonal}}
+\includegraphics[width=\textwidth]{fig11_seasonal_dynamics.pdf}
+\caption{Temporal flood dynamics (2015--2025). (\textbf{a})~Monthly flood extent with ENSO phase shading (blue: La Ni\~na; pink: El Ni\~no). (\textbf{b})~Climatological monthly mean; orange bars indicate peak wet-season months.}
+\label{fig:seasonal}
 \end{figure}
 
 The monthly time series (Figure~\ref{fig:seasonal}) confirms bimodal seasonality, with the October--November peak 25--35\% larger than the April--May peak. ENSO stratification (Table~\ref{tab:enso}) reveals La Ni\~na months averaging 186~km$^2$ of flood extent versus 139~km$^2$ during El Ni\~no---a 34\% increase (Kruskal-Wallis $H = 14.7$, $p < 0.001$; Dunn's post-hoc: La Ni\~na vs.\ El Ni\~no $p < 0.001$, La Ni\~na vs.\ neutral $p = 0.012$). The most extreme monthly extents---October 2020 (347~km$^2$) and November 2022 (312~km$^2$)---both occurred during the 2020--2023 triple-dip La Ni\~na.
 
-\begin{table}[H]
-\caption{Flood extent statistics by ENSO phase.\label{tab:enso}}
+\begin{table}[htbp]
+\caption{Flood extent statistics by ENSO phase.}
+\label{tab:enso}
 \centering
 \footnotesize
 \begin{tabular}{lccccc}
@@ -415,22 +432,32 @@ This study demonstrates that SAR remote sensing, ensemble machine learning, and 
 The technology has closed the data gap. Closing the governance gap---ensuring these products reach the municipal planning offices where flood risk decisions are made---remains the harder task.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{6pt}
+\section*{Supplementary Materials}
 
-\supplementary{The following supplementary materials are available online: Table~S1 (Flood Risk Index for all 125 municipalities), Figures~S1--S3 (SHAP dependence plots for HAND, flood frequency, and elevation), Figure~S4 (per-fold ROC curves), and the complete Google Earth Engine processing scripts.}
+The following supplementary materials are available online: Table~S1 (Flood Risk Index for all 125 municipalities), Figures~S1--S3 (SHAP dependence plots for HAND, flood frequency, and elevation), Figure~S4 (per-fold ROC curves), and the complete Google Earth Engine processing scripts.
 
-\authorcontributions{Conceptualization, C.E.M. and S.J.L.; methodology, C.E.M.; software, C.E.M.; formal analysis, C.E.M.; investigation, C.E.M.; data curation, C.E.M.; writing---original draft, C.E.M.; writing---review and editing, S.J.L.; visualization, C.E.M.; supervision, S.J.L. All authors have read and agreed to the published version of the manuscript.}
+\section*{Author Contributions}
 
-\funding{This research was supported by Universidad EAFIT through the Master's thesis research program. No external funding was received.}
+Conceptualization, C.E.M. and S.J.L.; methodology, C.E.M.; software, C.E.M.; formal analysis, C.E.M.; investigation, C.E.M.; data curation, C.E.M.; writing---original draft, C.E.M.; writing---review and editing, S.J.L.; visualization, C.E.M.; supervision, S.J.L. All authors have read and agreed to the published version of the manuscript.
 
-\noindent\textbf{Data Availability Statement:} All satellite data were accessed through Google Earth Engine. Administrative boundaries from GADM 4.1. Source code available at \url{https://github.com/cespinalm/antioquia-flood-risk} (MIT license).
+\section*{Funding}
 
-\acknowledgments{The authors thank Google Earth Engine for cloud computing access, ESA for Sentinel-1 data, the JRC for Global Surface Water, and UNGRD for maintaining Colombia's disaster event database.}
+This research was supported by Universidad EAFIT through the Master's thesis research program. No external funding was received.
 
-\conflictsofinterest{The authors declare no conflicts of interest.}
+\section*{Data Availability}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\abbreviations{
+All satellite data were accessed through Google Earth Engine. Administrative boundaries from GADM 4.1. Source code available at \url{https://github.com/Cespial/antioquia-flood-risk} (MIT license).
+
+\section*{Acknowledgments}
+
+The authors thank Google Earth Engine for cloud computing access, ESA for Sentinel-1 data, the JRC for Global Surface Water, and UNGRD for maintaining Colombia's disaster event database.
+
+\section*{Conflicts of Interest}
+
+The authors declare no conflicts of interest.
+
+\section*{Abbreviations}
+
 The following abbreviations are used in this manuscript:\\
 
 \noindent
@@ -447,11 +474,10 @@ AUC-ROC & Area Under the ROC Curve\\
 TWI & Topographic Wetness Index\\
 SPI & Stream Power Index
 \end{tabular}
-}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\reftitle{References}
 
+\bibliographystyle{unsrtnat}
 \bibliography{references}
 
 \end{document}
