@@ -6,6 +6,8 @@ Cristian Espinal Maya [![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1
 
 School of Applied Sciences and Engineering, Universidad EAFIT, Medellin, Colombia
 
+[![SSRN](https://img.shields.io/badge/Preprint-SSRN-blue)](https://www.ssrn.com/) · [![License: MIT](https://img.shields.io/badge/Code-MIT-yellow)](LICENSE) · [![License: CC BY 4.0](https://img.shields.io/badge/Manuscript-CC%20BY%204.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
+
 ---
 
 ## Abstract
@@ -16,9 +18,9 @@ We present a reproducible, open-access framework that delivers municipality-leve
 
 ```
 .
-├── overleaf/                  # Manuscript (arXiv preprint format)
+├── overleaf/                  # Manuscript (preprint format)
 │   ├── main.tex               # Main LaTeX source
-│   ├── arxiv.sty              # arXiv style file
+│   ├── arxiv.sty              # Preprint style file
 │   ├── references.bib         # Bibliography (34 references)
 │   └── figures/               # All figure PDFs (10 figures)
 ├── scripts/                   # Processing and analysis pipeline
@@ -32,7 +34,7 @@ We present a reproducible, open-access framework that delivers municipality-leve
 │   ├── 08_generate_tables.py
 │   ├── 09_quality_control.py
 │   └── regenerate_all_figures_nature.py
-├── arxiv_submission.zip       # Ready-to-upload arXiv package
+├── arxiv_submission.zip       # Ready-to-upload submission package
 └── README.md
 ```
 
@@ -104,7 +106,7 @@ If you use this work, please cite:
   title   = {Municipality-Scale Flood Risk Mapping in {Antioquia}, {Colombia},
              Using {Sentinel-1} {SAR} and Ensemble Machine Learning (2015--2025)},
   year    = {2026},
-  note    = {Preprint}
+  note    = {Available at SSRN}
 }
 ```
 
